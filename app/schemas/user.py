@@ -16,3 +16,10 @@ class UserOut(BaseModel):
     bio: Optional[str]
     location: Optional[str]
     website: Optional[str]
+
+class UserUpdate(BaseModel):
+    name: Optional[str] = None
+    bio: Optional[str] = None
+    location: Optional[str] = None
+    website: Optional[str] = None
+    image: Optional[str] = None

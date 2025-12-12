@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from app.core.deps import get_cursor, get_current_user_id
 from app.core.security import verify_password, create_access_token
-from app.schemas.user import UserCreate, UserOut
+from app.schemas.user import UserCreate, UserOut, UserUpdate
 from app.schemas.token import Token
 from app.crud import user as user_crud
 
@@ -36,3 +36,15 @@ def get_me(user_id: str = Depends(get_current_user_id), cursor=Depends(get_curso
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     return user
+
+@router.put("/me", response_model=UserOut)
+def update_me(
+    user_data: UserUpdate,
+    user_id: str = Depends(get_current_user_id),
+    cursor=Depends(get_cursor)
+):
+    user_crud.update_user_profile(cursor, user_id, user_data)
+    updated_user = user_crud.get_user_profile(cursor, user_id)
+    if not updated_user:
+        raise HTTPException(status_code=404, detail="User not found after update")
+    return updated_user

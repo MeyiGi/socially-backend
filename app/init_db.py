@@ -42,19 +42,20 @@ def init_db():
             password_hash VARCHAR2(255) NOT NULL,
             name VARCHAR2(255),
             bio VARCHAR2(1000),
-            image VARCHAR2(1000),
+            image VARCHAR2(4000), -- CHANGED FROM 1000 TO 4000
             location VARCHAR2(255),
             website VARCHAR2(255),
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )""")
 
+        # 2. Update the Posts Table definition
         cursor.execute("""
         CREATE TABLE posts (
             id VARCHAR2(36) PRIMARY KEY NOT NULL,
             author_id VARCHAR2(36) NOT NULL,
             content CLOB,
-            image VARCHAR2(1000),
+            image VARCHAR2(4000), -- CHANGED FROM 1000 TO 4000
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             CONSTRAINT fk_post_author FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE

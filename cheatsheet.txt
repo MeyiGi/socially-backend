@@ -1,0 +1,6 @@
+sudo usermod -aG kvm $USER 
+sudo usermod -aG libvirt $USER 
+sudo modprobe kvm_amd
+
+jojo2@gmail.com
+sAmat.2004h

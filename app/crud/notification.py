@@ -18,7 +18,7 @@ def get_notifications(cursor, user_id: str):
         SELECT n.id, n.type, n.read_status, n.created_at,
                c.id as creator_id, c.name, c.username, c.image,
                p.id as post_id, p.content, p.image as post_image,
-               cm.id as comment_id, cm.content as comment_content
+               cm.id as commeSELECTnt_id, cm.content as comment_content
         FROM notifications n
         JOIN users c ON n.creator_id = c.id
         LEFT JOIN posts p ON n.post_id = p.id

@@ -4,3 +4,6 @@ sudo modprobe kvm_amd
 
 jojo2@gmail.com
 sAmat.2004h
+
+kanybekovdaniel6@gmail.com
+sAmat.2004h
